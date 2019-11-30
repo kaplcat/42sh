@@ -1,3 +1,2 @@
 # 42sh
-## readline implementation 
-[@kaplcat](https://github.com/kaplcat)
+## readline implementation by [@kaplcat](https://github.com/kaplcat)

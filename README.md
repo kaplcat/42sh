@@ -1,2 +1,3 @@
 # 42sh
-# review
+# branch builtin denis
+doing echo and cd    

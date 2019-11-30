@@ -1,0 +1,12 @@
+# obj files
+*.o
+
+# debug_files
+.vs*
+
+# libraries
+*.a
+
+# files after compile
+a.out
+42sh

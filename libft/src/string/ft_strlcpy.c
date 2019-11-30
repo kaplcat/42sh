@@ -1,26 +1,18 @@
-#include <stddef.h>
+#include <ft_string.h>
 
-size_t  ft_strlcpy(char *dest, const char *src, size_t n)
+size_t  ft_strlcpy(char *dst, const char *src, size_t n)
 {
-    char        *d;
-    const char  *s;
-    size_t      siz;
+    size_t      srclen;
 
-    d = dest;
-    s = src;
-    siz = n;
-    if (siz)
+    srclen = ft_strlen(src);
+    if (srclen + 1 < n)
     {
-        while (--siz)
-            if ((*d++ = *s++) == '\0')
-                break ;
+        ft_memcpy(dst, src, srclen + 1);
     }
-    if (!n)
+    else if (n != 0)
     {
-        if (siz)
-            *d == '\0';
-        while (*s++)
-            ;
+        ft_memcpy(dst, src, n - 1);
+        dst[n - 1] = '\0';
     }
-    return (s - src - 1);
+    return (srclen);
 }

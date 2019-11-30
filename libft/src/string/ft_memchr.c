@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <ft_string.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -10,6 +10,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		if (*p != (unsigned char)c)
 		{
 			p++;
+			continue ;
 		}
 		return ((void *)p);
 	}

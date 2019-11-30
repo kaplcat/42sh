@@ -34,14 +34,3 @@ size_t	ft_strnlen(const char *s, size_t n)
     }
 	return (p - s);
 }
-
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-int main(int argc, char **argv)
-{
-    printf("%zu\n", ft_strnlen(argv[1], atoi(argv[2])));
-    printf("%zu\n",    strnlen(argv[1], atoi(argv[2])));
-}

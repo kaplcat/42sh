@@ -1,28 +1,24 @@
 #include <ft_string.h>
 
-size_t  ft_strlcat(char *dest, const char *src, size_t n)
+size_t  ft_strlcat(char *dst, const char *src, size_t n)
 {
-    char        *d;
-    const char  *s;
-    size_t      siz;
-    size_t      dlen;
+    size_t  srclen;
+    size_t  dstlen;
 
-    d = dest;
-    s = src;
-    dlen = ft_strlen(d);
-    d += dlen;
-    siz = n - dlen;
-    if (siz == 0)
-        return(dlen + ft_strlen(s));
-    while (*s)
+    srclen = ft_strlen(src);
+    dstlen = ft_strnlen(dst, n);
+    if (dstlen == n)
     {
-        if (n != 1)
-        {
-            *d++ = *s;
-            n--;
-        }
-        s++;
+        return (n + srclen);
     }
-    *d = '\0';
-    return (dlen + s - src);
+    if (srclen < n - dstlen)
+    {
+        ft_memcpy(dst+dstlen, src, srclen+1);
+    }
+    else
+    {
+        ft_memcpy(dst+dstlen, src, n - 1);
+        dst[dstlen + n - 1] = '\0';
+    }
+    return (dstlen + srclen);
 }

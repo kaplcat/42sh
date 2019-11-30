@@ -9,7 +9,7 @@ char	*ft_strrchr(const char *s, int c)
 	{
 		if (*s == (char)c)
 		{
-			ret = s;
+			ret = (char *)s;
 		}
 		s++;
 	}

@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <ft_string.h>
 
 void	*ft_memrchr(const void *s, int c, size_t n)
 {

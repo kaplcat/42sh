@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <ft_string.h>
 
-
-static void free_all(char **ws, size_t cw)
+static void     free_all(char **ws, size_t cw)
 {
     size_t  i;
 
@@ -15,7 +14,7 @@ static void free_all(char **ws, size_t cw)
     free(ws);
 }
 
-static size_t count_words(const char *s, int sep)
+static size_t   count_words(const char *s, int sep)
 {
     size_t  count;
 
@@ -33,7 +32,7 @@ static size_t count_words(const char *s, int sep)
     return (count);
 }
 
-char    *get_word(const char *s, int sep, size_t *len_skip)
+static char     *get_word(const char *s, int sep, size_t *len_skip)
 {
     const char    *word_start;
     const char    *word_end;
@@ -47,11 +46,11 @@ char    *get_word(const char *s, int sep, size_t *len_skip)
     while (*word_end && *word_end != sep)
         word_end++;
     *len_skip = word_end - s;
-    return (strndup(word_start, word_end - word_start));
+    return (ft_strndup(word_start, word_end - word_start));
 }
 
 
-char    **ft_strsplit(const char *s, int sep)
+char            **ft_strsplit(const char *s, int sep)
 {
     size_t  cw;
     char    **ws;

@@ -14,7 +14,7 @@ void	*ft_memset(void *s, int c, size_t n);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char *dst, const char *src);
-char	*ft_strcat(char *dst, char *src);
+char	*ft_strcat(char *dst, const char *src);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strcmp(const char *s1, const char *s2);

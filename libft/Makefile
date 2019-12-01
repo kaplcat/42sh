@@ -2,16 +2,17 @@
 
 LIBNAME=libft.a
 CC=clang
-CFLAGS= -Wall -Werror -Wextra -c
+CFLAGS=-Wall -Werror -Wextra -c
 INC_DIR=inc
 OBJ_DIR=obj
 
-
-#################################
-#
-#	STRING
-#
-###########################################
+#####################################
+#	███─███─████─███─█──█─████		#
+#	█────█──█──█──█──██─█─█			#
+#	███──█──████──█──█─██─█─██		#
+#	──█──█──█─█───█──█──█─█──█		#
+#	███──█──█─█──███─█──█─████		#
+#####################################
 
 STRING_SRC_DIR:=src/string
 STRING_SRC_FILES:=\
@@ -47,19 +48,83 @@ STRING_SRC_FILES:=\
 STRING_OBJ_FILES:= $(STRING_SRC_FILES:.c=.o)
 STRING_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STRING_OBJ_FILES))
 
+$(STRING_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STRING_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+
+#####################################
+#	███─███─████──█───███─████		#
+#	█────█──█──██─█────█──█──██		#
+#	███──█──█──██─█────█──████		#
+#	──█──█──█──██─█────█──█──██		#
+#	███──█──████──███─███─████		#
+#####################################
+
+STDLIB_SRC_DIR:=src/stdlib
+STDLIB_SRC_FILES:=\
+	env_fnc.c \
+	ft_atoi.c \
+	ft_getenv.c \
+	ft_setenv.c
+STDLIB_OBJ_FILES:= $(STDLIB_SRC_FILES:.c=.o)
+STDLIB_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STDLIB_OBJ_FILES))
+
+$(STDLIB_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STDLIB_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+
+#################################
+#	████─███─██─██─████─███		#
+#	█──█──█───███──█──█─█		#
+#	█─────█────█───████─███		#
+#	█──█──█────█───█────█		#
+#	████──█────█───█────███		#
+#	───────────█				#
+#################################
+
+CTYPE_SRC_DIR:=src/ctype
+CTYPE_SRC_FILES:=\
+	ft_isalnum.c \
+	ft_isalpha.c \
+	ft_isblank.c \
+	ft_iscntrl.c \
+	ft_isdigit.c \
+	ft_isgraph.c \
+	ft_islower.c \
+	ft_isprint.c \
+	ft_ispunct.c \
+	ft_isspace.c \
+	ft_isupper.c \
+	ft_isxdigit.c \
+	ft_tolower.c \
+	ft_toupper.c
+CTYPE_OBJ_FILES:= $(CTYPE_SRC_FILES:.c=.o)
+CTYPE_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(CTYPE_OBJ_FILES))
+
+$(CTYPE_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(CTYPE_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+
+
+#############################
+#	█───█─████─█──█─███		#
+#	██─██─█──█─█─█──█		#
+#	█─█─█─████─██───███		#
+#	█───█─█──█─█─█──█		#
+#	█───█─█──█─█──█─███		#
+#############################
 
 all: $(LIBNAME)
 
-$(LIBNAME): $(OBJ_DIR) $(STRING_OBJ_FILES)
-	@ar cr $(LIBNAME) $(STRING_OBJ_FILES)
+$(LIBNAME): $(OBJ_DIR) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES)
+	@ar cr $(LIBNAME) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES)
 	@echo "Create " $(LIBNAME)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
-
-$(STRING_OBJ_FILES):
-	@$(CC) $(CFLAGS) $(STRING_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
-	@echo "Compile " $(notdir $(@:.o=.c))
 
 .PHONY : clean
 clean:

@@ -2,18 +2,19 @@
 #include <ft_string.h>
 #include <stdlib.h>
 
-extern char **environ;
-static char **orig_env;
-static char **new_env;
+extern char	**environ;
+static char	**orig_env;
+static char	**new_env;
 
 /*
  *  Copy environ to new heap memory
- * 
+ *
  *  @append -- number of records for reserve
  *  =return -- copied environ
  */
 char    **env_create_copy(size_t append)
 {
+    extern char	**environ;
     char        **env;
     size_t      i;
     size_t      c;
@@ -21,8 +22,7 @@ char    **env_create_copy(size_t append)
     c = 0;
     while (environ[c])
         c++;
-    env = malloc((c + 1 + append) * sizeof(char *));
-    if (env == NULL)
+    if ((env = malloc((c + 1 + append) * sizeof(char *))) == NULL)
         return (NULL);
     i = 0;
     while (i < c)
@@ -43,8 +43,9 @@ char    **env_create_copy(size_t append)
 
 int ft_setenv(const char *name, const char *value, int overwrite)
 {
-    char    *find;
-    char    **tmp_env;
+    extern char **environ;
+    char        *find;
+    char        **tmp_env;
 
     if ((find = ft_getenv(name)) == NULL && !overwrite)
         return (0);
@@ -65,11 +66,12 @@ int ft_setenv(const char *name, const char *value, int overwrite)
 
 void ft_unsetenv(const char *name)
 {
-    int offset;;
+    extern char	**environ;
+    int         offset;
 
     if (environ == NULL || environ[0] == NULL)
         return ;
-    if (!findenv__(name, &offset))
+    if (findenv__(name, &offset) == NULL)
         return ;
     if (new_env)
         free(environ[offset]);
@@ -79,12 +81,14 @@ void ft_unsetenv(const char *name)
         environ[offset] = environ[offset + 1];
         offset++;
     }
+    environ[offset] = NULL;
 }
 
 __attribute__((destructor))
 static void clean_env(void)
 {
-    char    **tmp_env;
+    extern char	**environ;
+    char        **tmp_env;
 
     tmp_env = new_env;
     if (tmp_env != NULL)

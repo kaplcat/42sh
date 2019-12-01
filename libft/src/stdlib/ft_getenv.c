@@ -1,37 +1,37 @@
 #include <ft_string.h>
 #include <ft_stdlib.h>
 
-char    *findenv__(const char *name, int *offset)
+char	*findenv__(const char *name, int *offset)
 {
-    extern char **environ;
-    char        **env;
-    char        *eq;
-    int         off;
-    size_t      len;
+	extern char	**environ;
+	char		**env;
+	char		*eq;
+	int			i;
+	size_t		len;
 
-    env = environ;
-    if (name == NULL || (eq = ft_strchr(name, '=')) != NULL || 
-        env == NULL || env[0] == NULL)
-    {
-        return (NULL);
-    }
-    len = ft_strlen(name);
-    off = 0;
-    while (env[off])
-    {
-        if (ft_strncmp(name, env[off], len) == 0 && env[off][len] == '=')
-        {
-            *offset = off;
-            return (env[off] + len + 1);
-        }
-        off++;
-    }
-    return (NULL);
+	env = environ;
+	if (name == NULL || (eq = ft_strchr(name, '=')) != NULL ||
+		env == NULL || env[0] == NULL)
+	{
+		return (NULL);
+	}
+	len = ft_strlen(name);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(name, env[i], len) == 0 && env[i][len] == '=')
+		{
+			*offset = i;
+			return (env[i] + len + 1);
+		}
+		i++;
+	}
+	return (NULL);
 }
 
-char    *ft_getenv(const char *name)
+char	*ft_getenv(const char *name)
 {
-    int offset;
+	int	offset;
 
-    return (findenv__(name, &offset));    
+	return (findenv__(name, &offset));
 }

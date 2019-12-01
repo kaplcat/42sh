@@ -27,10 +27,10 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 size_t	ft_strspn(const char *s1, const char *s2);
 size_t	ft_strcspn(const char *s1, const char *s2);
 char	*ft_strpbrk(const char *s1, const char *s2);
-char    *ft_strdup(const char *s);
-char    *ft_strndup(const char *s, size_t n);
-size_t  ft_strlcpy(char *dst, const char *src, size_t n);
-size_t  ft_strlcat(char *dst, const char *src, size_t n);
-char    **ft_strsplit(const char *s, int sep);
+char	*ft_strdup(const char *s);
+char	*ft_strndup(const char *s, size_t n);
+size_t	ft_strlcpy(char *dst, const char *src, size_t n);
+size_t	ft_strlcat(char *dst, const char *src, size_t n);
+char	**ft_strsplit(const char *s, int sep);
 
 #endif

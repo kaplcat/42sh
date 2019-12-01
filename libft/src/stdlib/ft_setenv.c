@@ -6,12 +6,12 @@ static char	**g_orig_env;
 static char	**g_new_env;
 
 /*
- *  Copy environ to new heap memory
+ *	Copy environ to new heap memory
  *
- *  @append -- number of records for reserve
- *  =return -- copied environ
+ *	@append -- number of records for reserve
+ *	=return -- copied environ
  */
-char	**env_create_copy(size_t append)
+static char	**env_create_copy(size_t append)
 {
 	extern char	**environ;
 	char		**env;
@@ -84,7 +84,7 @@ void		ft_unsetenv(const char *name)
 }
 
 __attribute__((destructor))
-static void clean_env(void)
+static void	clean_env(void)
 {
 	extern char	**environ;
 	char		**tmp_env;

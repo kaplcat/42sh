@@ -43,7 +43,7 @@ int			env_append_record(char **env, const char *name, const char *value)
  *  Rewrite value by name in env
  *  Env in heap memory
 */
-int     env_update_record(char **env, const char *name, const char *value)
+int			env_update_record(char **env, const char *name, const char *value)
 {
 	size_t	value_len;
 	char	*eq;

@@ -1,4 +1,18 @@
-# GLOBAL VARS
+#####################################
+#	████─█───████─████──████─█
+#	█────█───█──█─█──██─█──█─█
+#	█─██─█───█──█─████──████─█
+#	█──█─█───█──█─█──██─█──█─█
+#	████─███─████─████──█──█─███
+#
+#
+#	█─█─████─████─███
+#	█─█─█──█─█──█─█
+#	█─█─████─████─███
+#	███─█──█─█─█────█
+#	─█──█──█─█─█──███
+#
+#####################################
 
 LIBNAME=libft.a
 CC=clang
@@ -7,11 +21,11 @@ INC_DIR=inc
 OBJ_DIR=obj
 
 #####################################
-#	███─███─████─███─█──█─████		#
-#	█────█──█──█──█──██─█─█			#
-#	███──█──████──█──█─██─█─██		#
-#	──█──█──█─█───█──█──█─█──█		#
-#	███──█──█─█──███─█──█─████		#
+#	███─███─████─███─█──█─████
+#	█────█──█──█──█──██─█─█
+#	███──█──████──█──█─██─█─██
+#	──█──█──█─█───█──█──█─█──█
+#	███──█──█─█──███─█──█─████
 #####################################
 
 STRING_SRC_DIR:=src/string
@@ -54,11 +68,11 @@ $(STRING_OBJ_FILES):
 
 
 #####################################
-#	███─███─████──█───███─████		#
-#	█────█──█──██─█────█──█──██		#
-#	███──█──█──██─█────█──████		#
-#	──█──█──█──██─█────█──█──██		#
-#	███──█──████──███─███─████		#
+#	███─███─████──█───███─████
+#	█────█──█──██─█────█──█──██
+#	███──█──█──██─█────█──████
+#	──█──█──█──██─█────█──█──██
+#	███──█──████──███─███─████
 #####################################
 
 STDLIB_SRC_DIR:=src/stdlib
@@ -76,12 +90,12 @@ $(STDLIB_OBJ_FILES):
 
 
 #################################
-#	████─███─██─██─████─███		#
-#	█──█──█───███──█──█─█		#
-#	█─────█────█───████─███		#
-#	█──█──█────█───█────█		#
-#	████──█────█───█────███		#
-#	───────────█				#
+#	████─███─██─██─████─███
+#	█──█──█───███──█──█─█
+#	█─────█────█───████─███
+#	█──█──█────█───█────█
+#	████──█────█───█────███
+#	───────────█
 #################################
 
 CTYPE_SRC_DIR:=src/ctype
@@ -109,18 +123,62 @@ $(CTYPE_OBJ_FILES):
 
 
 
+#################################
+#	███─███─████──███─████
+#	█────█──█──██──█──█──█
+#	███──█──█──██──█──█──█
+#	──█──█──█──██──█──█──█
+#	███──█──████──███─████
+#################################
+
+STDIO_SRC_DIR:=src/stdio
+STDIO_SRC_FILES:=\
+	ft_putendl_fd.c \
+	ft_putchar.c \
+	ft_putchar_fd.c \
+	ft_putendl.c \
+	ft_putstr.c \
+	ft_putstr_fd.c
+STDIO_OBJ_FILES:= $(STDIO_SRC_FILES:.c=.o)
+STDIO_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STDIO_OBJ_FILES))
+
+$(STDIO_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STDIO_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+
+STDIO_PRINTF_SRCDIR:=$(STDIO_SRC_DIR)/printf/src
+STDIO_PRINTF_INCDIR:=$(STDIO_SRC_DIR)/printf/inc
+STDIO_PRINTF_SRC:=\
+	ft_buf.c \
+	ft_fitoa.c \
+	ft_fuitoa.c \
+	ft_printf_main.c \
+	parse_dig.c \
+	parse_format.c \
+	parse_hndl.c \
+	parse_sym.c \
+	parse_types.c
+STDIO_PRINTF_OBJ_FILES:= $(STDIO_PRINTF_SRC:.c=.o)
+STDIO_PRINTF_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STDIO_PRINTF_OBJ_FILES))
+
+$(STDIO_PRINTF_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STDIO_PRINTF_SRCDIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/ -I $(STDIO_PRINTF_INCDIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+
 #############################
-#	█───█─████─█──█─███		#
-#	██─██─█──█─█─█──█		#
-#	█─█─█─████─██───███		#
-#	█───█─█──█─█─█──█		#
-#	█───█─█──█─█──█─███		#
+#	█───█─████─█──█─███
+#	██─██─█──█─█─█──█
+#	█─█─█─████─██───███
+#	█───█─█──█─█─█──█
+#	█───█─█──█─█──█─███
 #############################
 
 all: $(LIBNAME)
 
-$(LIBNAME): $(OBJ_DIR) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES)
-	@ar cr $(LIBNAME) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES)
+$(LIBNAME): $(OBJ_DIR) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES) $(STDIO_OBJ_FILES) $(STDIO_PRINTF_OBJ_FILES)
+	@ar cr $(LIBNAME) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES) $(STDIO_OBJ_FILES) $(STDIO_PRINTF_OBJ_FILES)
 	@echo "Create " $(LIBNAME)
 
 $(OBJ_DIR):

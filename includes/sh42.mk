@@ -6,3 +6,4 @@ HEADER_H = -I ../includes/
 COMPILING = $(CC) $(CFLAGS) $(HEADER_H)
 EXECUTABLE = 42sh
 LIBNAME = libft.a
+READLINE_LIBNAME = readline.a

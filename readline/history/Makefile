@@ -14,7 +14,7 @@ include ../../includes/sh42.mk
 
 HEADER_H = -I ../includes/
 
-DIR_O = ../../obj
+DIR_O = ../obj
 SOURCES = test_history.c # sources here
 OBJECTS = $(addprefix $(DIR_O)/,$(patsubst %.c,%.o,$(SOURCES)))
 

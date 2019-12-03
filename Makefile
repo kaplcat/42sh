@@ -6,7 +6,7 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 15:33:09 by yquaro            #+#    #+#              #
-#    Updated: 2019/12/03 16:33:07 by yquaro           ###   ########.fr        #
+#    Updated: 2019/12/03 18:14:07 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,12 @@ all:
 
 clean:
 	@make -C libft/ clean
+	@make -C readline/ clean
 	@make -C obj/ clean
 
 fclean: clean
 	@make -C libft/ fclean
+	@make -C readline/ fclean
 	@make -C obj/ fclean
 	@rm -f $(EXECUTABLE)
 

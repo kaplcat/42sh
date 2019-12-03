@@ -6,7 +6,7 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 15:35:48 by yquaro            #+#    #+#              #
-#    Updated: 2019/12/03 17:59:13 by yquaro           ###   ########.fr        #
+#    Updated: 2019/12/03 20:25:59 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,4 +24,5 @@ print:
 	@echo \*\*\* Compiling autocom
 
 $(DIR_O)/%.o: %.c
-	$(COMPILING) $< -o $@
+	@$(COMPILING) $< -o $@
+	@echo "Compile " $(notdir $(@:.o=.c))

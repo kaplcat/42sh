@@ -24,4 +24,5 @@ print:
 	@echo \*\*\* Compiling history
 
 $(DIR_O)/%.o: %.c
-	$(COMPILING) $< -o $@
+	@$(COMPILING) $< -o $@
+	@echo "Compile " $(notdir $(@:.o=.c))

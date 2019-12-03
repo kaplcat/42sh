@@ -19,6 +19,7 @@ CC=clang
 CFLAGS=-Wall -Werror -Wextra -c
 INC_DIR=inc
 OBJ_DIR=obj
+OBJ_FILE:=
 
 #####################################
 #	███─███─████─███─█──█─████
@@ -66,6 +67,7 @@ $(STRING_OBJ_FILES):
 	@$(CC) $(CFLAGS) $(STRING_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
 	@echo "Compile " $(notdir $(@:.o=.c))
 
+OBJ_FILE += $(STRING_OBJ_FILES)
 
 #####################################
 #	███─███─████──█───███─████
@@ -88,6 +90,7 @@ $(STDLIB_OBJ_FILES):
 	@$(CC) $(CFLAGS) $(STDLIB_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
 	@echo "Compile " $(notdir $(@:.o=.c))
 
+OBJ_FILE += $(STDLIB_OBJ_FILES)
 
 #################################
 #	████─███─██─██─████─███
@@ -121,7 +124,7 @@ $(CTYPE_OBJ_FILES):
 	@$(CC) $(CFLAGS) $(CTYPE_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
 	@echo "Compile " $(notdir $(@:.o=.c))
 
-
+OBJ_FILE += $(CTYPE_OBJ_FILES)
 
 #################################
 #	███─███─████──███─████
@@ -142,10 +145,12 @@ STDIO_SRC_FILES:=\
 STDIO_OBJ_FILES:= $(STDIO_SRC_FILES:.c=.o)
 STDIO_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STDIO_OBJ_FILES))
 
+
 $(STDIO_OBJ_FILES):
 	@$(CC) $(CFLAGS) $(STDIO_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
 	@echo "Compile " $(notdir $(@:.o=.c))
 
+OBJ_FILE += $(STDIO_OBJ_FILES)
 
 STDIO_PRINTF_SRCDIR:=$(STDIO_SRC_DIR)/printf/src
 STDIO_PRINTF_INCDIR:=$(STDIO_SRC_DIR)/printf/inc
@@ -166,6 +171,7 @@ $(STDIO_PRINTF_OBJ_FILES):
 	@$(CC) $(CFLAGS) $(STDIO_PRINTF_SRCDIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/ -I $(STDIO_PRINTF_INCDIR)/
 	@echo "Compile " $(notdir $(@:.o=.c))
 
+OBJ_FILE += $(STDIO_PRINTF_OBJ_FILES)
 
 #############################
 #	█───█─████─█──█─███
@@ -177,8 +183,8 @@ $(STDIO_PRINTF_OBJ_FILES):
 
 all: $(LIBNAME)
 
-$(LIBNAME): $(OBJ_DIR) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES) $(STDIO_OBJ_FILES) $(STDIO_PRINTF_OBJ_FILES)
-	@ar cr $(LIBNAME) $(STRING_OBJ_FILES) $(STDLIB_OBJ_FILES) $(CTYPE_OBJ_FILES) $(STDIO_OBJ_FILES) $(STDIO_PRINTF_OBJ_FILES)
+$(LIBNAME): $(OBJ_DIR) $(OBJ_FILE)
+	@ar cr $(LIBNAME) $(OBJ_FILE)
 	@echo "Create " $(LIBNAME)
 
 $(OBJ_DIR):

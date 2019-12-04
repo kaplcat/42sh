@@ -6,11 +6,11 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 18:00:45 by yquaro            #+#    #+#              #
-#    Updated: 2019/12/03 20:56:21 by yquaro           ###   ########.fr        #
+#    Updated: 2019/12/04 21:09:21 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include ../../includes/sh42.mk
+include ../../inc/sh42.mk
 
 all:
 	@ar rc $(READLINE_LIBNAME) *.o

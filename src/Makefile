@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-include ../includes/sh42.mk
+include ../inc/sh42.mk
 
-HEADER_H = -I ../includes/
+HEADER_H = -I ../inc/
 
 DIR_O = ../obj
 SOURCES = makefile_test.c # sources here

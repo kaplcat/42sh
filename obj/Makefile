@@ -6,11 +6,11 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 15:36:16 by yquaro            #+#    #+#              #
-#    Updated: 2019/12/03 20:59:31 by yquaro           ###   ########.fr        #
+#    Updated: 2019/12/04 21:10:01 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include ../includes/sh42.mk
+include ../inc/sh42.mk
 
 CFLAGS = -g -Wall -Wextra -Werror
 COMPILING = $(CC) $(CFLAGS) $(HEADER_H)

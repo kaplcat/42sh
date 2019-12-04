@@ -6,11 +6,11 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 15:35:38 by yquaro            #+#    #+#              #
-#    Updated: 2019/12/03 18:15:41 by yquaro           ###   ########.fr        #
+#    Updated: 2019/12/04 21:09:58 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include ../includes/sh42.mk
+include ../inc/sh42.mk
 
 all: print
 	@make -C autocom/ all

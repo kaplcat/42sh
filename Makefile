@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-include includes/sh42.mk
+include inc/sh42.mk
 
 all:
 	@make -C libft/ all

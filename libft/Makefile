@@ -21,6 +21,25 @@ INC_DIR=inc
 OBJ_DIR=obj
 OBJ_FILE:=
 
+all: $(LIBNAME)
+
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
+
+.PHONY : clean
+clean:
+	@rm -rf obj
+	@echo "Remove " $(OBJ_DIR)
+
+.PHONY : fclean
+fclean: clean
+	@rm -rf $(LIBNAME)
+	@echo "Remove " $(LIBNAME)
+
+.PHONY : re
+re: fclean all
+
+
 #####################################
 #	███─███─████─███─█──█─████
 #	█────█──█──█──█──██─█─█
@@ -30,7 +49,7 @@ OBJ_FILE:=
 #####################################
 
 STRING_SRC_DIR:=src/string
-STRING_SRC_FILES:=\
+STRING_SRC_FILES:= \
 	ft_memccpy.c \
 	ft_memchr.c \
 	ft_memcmp.c \
@@ -78,7 +97,7 @@ OBJ_FILE += $(STRING_OBJ_FILES)
 #####################################
 
 STDLIB_SRC_DIR:=src/stdlib
-STDLIB_SRC_FILES:=\
+STDLIB_SRC_FILES:= \
 	env_fnc.c \
 	ft_atoi.c \
 	ft_getenv.c \
@@ -102,7 +121,7 @@ OBJ_FILE += $(STDLIB_OBJ_FILES)
 #################################
 
 CTYPE_SRC_DIR:=src/ctype
-CTYPE_SRC_FILES:=\
+CTYPE_SRC_FILES:= \
 	ft_isalnum.c \
 	ft_isalpha.c \
 	ft_isblank.c \
@@ -135,7 +154,7 @@ OBJ_FILE += $(CTYPE_OBJ_FILES)
 #################################
 
 STDIO_SRC_DIR:=src/stdio
-STDIO_SRC_FILES:=\
+STDIO_SRC_FILES:= \
 	ft_putendl_fd.c \
 	ft_putchar.c \
 	ft_putchar_fd.c \
@@ -154,7 +173,7 @@ OBJ_FILE += $(STDIO_OBJ_FILES)
 
 STDIO_PRINTF_SRCDIR:=$(STDIO_SRC_DIR)/printf/src
 STDIO_PRINTF_INCDIR:=$(STDIO_SRC_DIR)/printf/inc
-STDIO_PRINTF_SRC:=\
+STDIO_PRINTF_SRC:= \
 	ft_buf.c \
 	ft_fitoa.c \
 	ft_fuitoa.c \
@@ -173,32 +192,6 @@ $(STDIO_PRINTF_OBJ_FILES):
 
 OBJ_FILE += $(STDIO_PRINTF_OBJ_FILES)
 
-#############################
-#	█───█─████─█──█─███
-#	██─██─█──█─█─█──█
-#	█─█─█─████─██───███
-#	█───█─█──█─█─█──█
-#	█───█─█──█─█──█─███
-#############################
-
-all: $(LIBNAME)
-
 $(LIBNAME): $(OBJ_DIR) $(OBJ_FILE)
 	@ar cr $(LIBNAME) $(OBJ_FILE)
 	@echo "Create " $(LIBNAME)
-
-$(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
-
-.PHONY : clean
-clean:
-	@rm -rf obj
-	@echo "Remove " $(OBJ_DIR)
-
-.PHONY : fclean
-fclean: clean
-	@rm -rf $(LIBNAME)
-	@echo "Remove " $(LIBNAME)
-
-.PHONY : re
-re: fclean all

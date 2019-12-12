@@ -33,4 +33,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t n);
 char	**ft_strsplit(const char *s, int sep);
 
+void	ft_strdel(char **as);
+int		ft_strequ(char const *s1, char const *s2);
+
 #endif

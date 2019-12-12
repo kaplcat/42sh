@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2018/12/02 11:51:41 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 14:22:07 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_string.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
-
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
-
-#endif
+int					ft_strequ(char const *s1, char const *s2)
+{
+	if (!s1 || !s2)
+		return (0);
+	if (ft_strcmp(s1, s2) == 0)
+		return (1);
+	return (0);
+}

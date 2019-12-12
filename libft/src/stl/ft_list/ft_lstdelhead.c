@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_lstdelhead.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/12/04 21:51:52 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 13:42:25 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+void				ft_lstdelhead(t_list **alst, void (*del)(void *, size_t))
+{
+	t_list				*tmp;
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
-
-#endif
+	tmp = (*alst)->next;
+	ft_lstdelone(alst, del);
+	*alst = tmp;
+}

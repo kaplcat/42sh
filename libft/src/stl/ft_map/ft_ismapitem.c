@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_ismapitem.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/09/19 10:41:43 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 13:45:16 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+/*
+** Checks for a key in a hash table
+**
+** @param 		key
+** @return		1/0
+*/
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
-
-#endif
+int					ft_ismapitem(t_map *map, const char *key)
+{
+	if (ft_mapvalue(map, key) == NULL)
+		return (0);
+	return (1);
+}

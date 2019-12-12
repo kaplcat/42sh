@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_mapdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/09/18 11:34:56 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/04 22:05:57 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+/*
+** Frees the hash table structure.
+**
+** @param 		map		pointer to structure
+** @return		N/A
+*/
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
+void				ft_mapdel(t_map **map)
+{
+	size_t			i;
 
-#endif
+	i = 0;
+	while (i < (*map)->size)
+		ft_mapdelind(map, i++);
+	free((*map)->array);
+	(*map)->array = NULL;
+	(*map)->size = 0;
+	(*map)->numof_items = 0;
+	(*map)->valuedel_func = NULL;
+	free(*map);
+	*map = NULL;
+}

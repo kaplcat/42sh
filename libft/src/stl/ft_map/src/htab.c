@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   htab.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/09/18 09:34:12 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 14:18:54 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
+#include <stdlib.h>
+#include "ft_string.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+t_htab				*init_htab(const char *key, void *value)
+{
+	t_htab			*htab;
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
-
-#endif
+	if ((htab = (t_htab *)malloc(sizeof(t_htab))) == NULL)
+		return (NULL);
+	if ((htab->key = ft_strdup(key)) == NULL)
+	{
+		free(htab);
+		return (NULL);
+	}
+	htab->value = value;
+	return (htab);
+}

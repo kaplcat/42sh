@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/07/03 15:23:33 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 14:06:18 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+/*
+** Adds an item to the end of the list.
+**
+** @param 		alst	head of list
+** @param 		new		new item
+** @return		N/A
+*/
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
-
-#endif
+void				ft_lstpushback(t_list **alst, t_list *new)
+{
+	if (new == NULL)
+		return ;
+ 	while (*alst != NULL)
+    	alst = &(*alst)->next;
+    *alst = new;
+}

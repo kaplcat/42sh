@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/09/17 10:57:23 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 13:43:33 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+/*
+** Applies function to each item in a list and 
+**
+** @param 		lst			head of list
+** @param		f			pointer to function
+** @return		N/A
+*/
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
-
-#endif
+void				ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+{
+	while (lst != NULL)
+	{
+		f(lst);
+		lst = lst->next;
+	}
+}

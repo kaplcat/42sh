@@ -77,8 +77,10 @@ STRING_SRC_FILES:= \
 	ft_strrchr.c \
 	ft_strsplit.c \
 	ft_strspn.c \
-	ft_strstr.c
-
+	ft_strstr.c \
+	\
+	ft_strdel.c \
+	ft_strequ.c
 STRING_OBJ_FILES:= $(STRING_SRC_FILES:.c=.o)
 STRING_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STRING_OBJ_FILES))
 
@@ -191,6 +193,76 @@ $(STDIO_PRINTF_OBJ_FILES):
 	@echo "Compile " $(notdir $(@:.o=.c))
 
 OBJ_FILE += $(STDIO_PRINTF_OBJ_FILES)
+
+#################################
+#	███─███─█
+#	█────█──█
+#	███──█──█
+#	──█──█──█──█
+#	███──█──████
+#################################
+
+STL_FT_LIST_SRC_DIR:=src/stl/ft_list
+STL_FT_LIST_SRC_FILES:= \
+	ft_lstdel.c \
+	ft_lstdelone.c \
+	ft_lstnew.c \
+	ft_lstadd.c \
+	ft_lstpushback.c \
+	ft_putlst.c \
+	ft_lstdelthis.c \
+	ft_lstaddhere.c \
+	ft_lstsize.c \
+	ft_lstiter.c \
+	ft_lstmap.c \
+	ft_lstdeltail.c \
+	ft_lstdelhead.c
+STL_FT_LIST_OBJ_FILES:= $(STL_FT_LIST_SRC_FILES:.c=.o)
+STL_FT_LIST_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STL_FT_LIST_OBJ_FILES))
+
+$(STL_FT_LIST_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STL_FT_LIST_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+OBJ_FILE += $(STL_FT_LIST_OBJ_FILES)
+
+
+STL_FT_MAP_SRC_DIR:=src/stl/ft_map
+
+STL_FT_MAP_SRCDIR:=$(STL_FT_MAP_SRC_DIR)/src
+STL_FT_MAP_INCDIR:=$(STL_FT_MAP_SRC_DIR)/src/inc
+STL_FT_MAP_SRC:= \
+	hashfunc.c \
+	htab.c \
+	map_reindexing.c \
+	print_htab.c
+STL_FT_MAP_SRC_OBJ_FILES:= $(STL_FT_MAP_SRC:.c=.o)
+STL_FT_MAP_SRC_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STL_FT_MAP_SRC_OBJ_FILES))
+
+$(STL_FT_MAP_SRC_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STL_FT_MAP_SRCDIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/ -I $(STL_FT_MAP_INCDIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+OBJ_FILE += $(STL_FT_MAP_SRC_OBJ_FILES)
+
+
+STL_FT_MAP_SRC_FILES:= \
+	ft_mapinit.c \
+	ft_mapinsert.c \
+	ft_putmap.c \
+	ft_mapvalue.c \
+	ft_mapdel.c \
+	ft_mapdelind.c \
+	ft_mapdelkey.c \
+	ft_ismapitem.c
+STL_FT_MAP_OBJ_FILES:= $(STL_FT_MAP_SRC_FILES:.c=.o)
+STL_FT_MAP_OBJ_FILES:= $(addprefix $(OBJ_DIR)/, $(STL_FT_MAP_OBJ_FILES))
+
+$(STL_FT_MAP_OBJ_FILES):
+	@$(CC) $(CFLAGS) $(STL_FT_MAP_SRC_DIR)/$(notdir $(@:.o=.c)) -o $@ -I $(INC_DIR)/
+	@echo "Compile " $(notdir $(@:.o=.c))
+
+OBJ_FILE += $(STL_FT_MAP_OBJ_FILES)
 
 
 $(LIBNAME): $(OBJ_DIR) $(OBJ_FILE)

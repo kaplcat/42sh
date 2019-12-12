@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh42.h                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:24:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/12/12 14:26:27 by yquaro           ###   ########.fr       */
+/*   Created: 2019/09/17 10:53:34 by yquaro            #+#    #+#             */
+/*   Updated: 2019/12/12 14:08:06 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SH42_H
-# define SH42_H
+#include "ft_stl.h"
 
-# include <unistd.h>
-# include "../libft/inc/ft_ctype.h"
-# include "../libft/inc/ft_stdio.h"
-# include "../libft/inc/ft_stdlib.h"
-# include "../libft/inc/ft_string.h"
-# include "../libft/inc/ft_stl.h"
+/*
+** Returns number of items in list
+**
+** @param 		alst
+** @return		len
+*/
 
-void				test_autocom(void);
-void				test_history(void);
-void				test_terminal(void);
+size_t				ft_lstsize(t_list *alst)
+{
+	size_t			len;
 
-#endif
+	len = 0;
+	while (alst != NULL)
+	{
+		len++;
+		alst = alst->next;
+	}
+	return (len);
+}

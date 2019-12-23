@@ -64,7 +64,8 @@ int test_cd_minus()
 
 int main (int argc, char **argv)
 {
-	ft_cd(1, "cd");
+
+	ft_cd(3, "cd -L ../");
 	if (home_test == 0)
 	{
 		printf("Test 'home_test' FAIL\n");

@@ -1,4 +1,5 @@
 #include <builtin.h>
+#include <string.h>
 
 #define OLDPWD "OLDPWD"
 #define PWD "PWD"
@@ -6,8 +7,8 @@
 
 void	replacement(char *current_dir, char *following_dir)
 {
-	ft_setenv(PWD, current_dir);
-	ft_setenv(OLDPWD, following_dir);
+	// ft_setenv(PWD, current_dir);
+	// ft_setenv(OLDPWD, following_dir);
 }
 
 char	*search_home_dir(void) //static 
@@ -20,17 +21,17 @@ char	*search_home_dir(void) //static
 	if ((name_user = getenv("USER")) != NULL)
 	{
 		user_info = getpwnam(name_user);
-		home_dir_user = strcpy(strdup(strlen(user_info->pw_dir)), user_info->pw_dir);
+		// home_dir_user = strcpy(strdup(strlen(user_info->pw_dir)), user_info->pw_dir);
 		return(home_dir_user);
 	}
 	else
 	{
 		id_user =  geteuid();
 		user_info = getpwuid(id_user);
-		if (home_dir_user = strcpy(strdup(strlen(user_info->pw_dir)), user_info->pw_dir) != NULL)
-		{
-			return(home_dir_user);
-		}
+		// if (home_dir_user = strcpy(strdup(strlen(user_info->pw_dir)), user_info->pw_dir) != NULL)
+		// {
+		// 	return(home_dir_user);
+		// }
 		// else if (name_userstrcpy(strdup(strlen(user_info->pw_dir)), user_info->pw_dir) != NULL) // i have no idea why l needed it
 		// {
 		// 	;/* code */
@@ -56,8 +57,9 @@ int	ft_home(void) // static
 			perror("error moving to home directory");
 			return(1);
 		}
-		else printf ("home == %s\n",home);
-		replacement(home, following_dir);
+		else 
+			printf ("home == %s\n",home);
+		// replacement(home, following_dir);
 	}
 	else if((home = (search_home_dir())) !=  NULL)
 	{
@@ -67,7 +69,7 @@ int	ft_home(void) // static
 			return (1);
 		}
 		free(home);
-		replacement(home, following_dir);
+		// replacement(home, following_dir);
 		return(0);
 	}
 	else 
@@ -84,19 +86,19 @@ int swap_dir(void)
 	char *following_dir;
 
 
-	if (ft_getenv(PWD) == NULL || ft_getenv(OLDPWD) == NULL)
-	{
-		return 1;
-	}
+	// if (ft_getenv(PWD) == NULL || ft_getenv(OLDPWD) == NULL)
+	// {
+	// 	return 1;
+	// }
 	current_dir = getcwd(NULL, 0);
-	if (chdir(ft_getenv(OLDPWD)) == -1)
+	if (chdir(getenv(OLDPWD)) == -1)
 	{
 		free(current_dir);
 		perror("21sh");
 		return 1;
 	}
 	following_dir = getcwd(NULL, 0); // ошибка логики текущий путь == предыдущему 
-	replacement(current_dir, following_dir);
+	// replacement(current_dir, following_dir);
 	free(current_dir);
 	free(following_dir);
 	return 0;
@@ -105,27 +107,27 @@ int swap_dir(void)
 
 int		to_path(char *path)
 {
-	char	*current_dir;//текущаю директория
-	char	*following_dir; // следующая директория куда мы перешли
+	char	*current_dir;		//текущаю директория
+	char	*following_dir; 	// следующая директория куда мы перешли
 	current_dir = getcwd(NULL, 0);
 	if(chdir(path) == -1)
 	{
 		free(current_dir);
-		perror("21sh"); // посмотреть можно ли юзать
+		perror("21sh"); 		// посмотреть можно ли юзать
 		return 1;
 	}
-	// ft_setenv("OLDPWD", current_dir);
+								// ft_setenv("OLDPWD", current_dir);
 	free(current_dir);
 	
 	following_dir = getcwd(NULL, 0);
-	ft_setenv(PWD, following_dir);
+								// setenv(PWD, following_dir);
 	free(following_dir);
 	return(0);
 
 }
 
 /* НЕ забытЬ!!!!!!!!
-** posix flag -L ...
+** posix flag -L -P
 */
 int		ft_cd(int argc, char *argv)
 {
@@ -143,13 +145,13 @@ int		ft_cd(int argc, char *argv)
 		** cd -
 		**  1 2
 		*/
-		if(strcmp(argv[1], "-") == 0)
+		if(strcmp(argv, "-") == 0)
 		{
 			return swap_dir();
 		}
 		else
 		{
-			return to_path(argv[1]);
+			return to_path(argv);
 		}
 		
 	}

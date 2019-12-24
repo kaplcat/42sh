@@ -129,8 +129,19 @@ int		to_path(char *path)
 /* НЕ забытЬ!!!!!!!!
 ** posix flag -L -P
 */
-int		ft_cd(int argc, char *argv)
+//-L or -P or -PL or -LP
+char		**parse (int argc, char **argv){
+	int len = strlen(argv[1]);
+	printf ("%d\n%s\n", len, argv[1]);
+	return NULL;
+}
+
+int		ft_cd(int argc, char **argv)
 {
+	if (argc == 3)
+	{
+		argv = parse(argc, argv);
+	}
 	if (argc == 1)
 	{
 		/*
@@ -145,19 +156,19 @@ int		ft_cd(int argc, char *argv)
 		** cd -
 		**  1 2
 		*/
-		if(strcmp(argv, "-") == 0)
+		if(strcmp(argv[1], "-") == 0)
 		{
 			return swap_dir();
 		}
 		else
 		{
-			return to_path(argv);
+			return to_path(argv[1]);
 		}
 		
 	}
-	else 
+	else
 	{
-		fprintf(stderr, "too many arg\n");
+		printf("flag posix or error\n");
 	}
 	return(1);
 }

@@ -7,7 +7,7 @@
 # include <pwd.h>
 # include <sys/types.h>
 
-int		ft_cd(int argc, char *argv);
+int		ft_cd(int argc, char **argv);
 int		ft_home(void);
 char	*search_home_dir(void);
 
